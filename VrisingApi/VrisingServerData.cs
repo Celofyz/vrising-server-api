@@ -1,0 +1,1 @@
+﻿internal record VrisingServerData(long SteamId);
