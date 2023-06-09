@@ -1,7 +1,6 @@
-﻿namespace VrisingApi
+﻿namespace VrisingApi;
+
+internal interface IVrisingLog
 {
-    internal interface IVrisingLog
-    {
-        long ServerSteamId { get; }
-    }
+    long ServerSteamId { get; }
 }

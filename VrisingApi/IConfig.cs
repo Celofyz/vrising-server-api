@@ -1,7 +1,6 @@
-﻿namespace VrisingApi
+﻿namespace VrisingApi;
+
+public interface IConfig
 {
-    public interface IConfig
-    {
-        string VrisingLogPath { get; }
-    }
+    string VrisingLogPath { get; }
 }

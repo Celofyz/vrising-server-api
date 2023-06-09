@@ -1,28 +1,27 @@
-﻿namespace VrisingApi
+﻿namespace VrisingApi;
+
+internal class VrisingLog : IVrisingLog
 {
-    internal class VrisingLog : IVrisingLog
+    private readonly IConfig config;
+
+    public VrisingLog(IConfig config)
     {
-        private readonly IConfig config;
+        this.config = config;
+    }
 
-        public VrisingLog(IConfig config)
+    public long ServerSteamId
+    {
+        get
         {
-            this.config = config;
-        }
+            const string searchPattern = "Successfully logged in with the SteamGameServer API. SteamID:";
+            const int idIndex = 1;
 
-        public long ServerSteamId
-        {
-            get
-            {
-                const string searchPattern = "Successfully logged in with the SteamGameServer API. SteamID:";
-                const int idIndex = 1;
+            var splittedLine = File.ReadLines(config.VrisingLogPath)
+                .Where(line => line.Contains(searchPattern)).Single()
+                .Split(searchPattern);
 
-                var splittedLine = File.ReadLines(config.VrisingLogPath)
-                    .Where(line => line.Contains(searchPattern)).Single()
-                    .Split(searchPattern);
-
-                var steamId = splittedLine[idIndex].Trim();
-                return long.Parse(steamId);
-            }
+            var steamId = splittedLine[idIndex].Trim();
+            return long.Parse(steamId);
         }
     }
 }

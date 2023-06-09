@@ -1,4 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
 using VrisingApi;
 
 var builder = WebApplication.CreateBuilder(args);

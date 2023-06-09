@@ -1,7 +1,6 @@
-﻿namespace VrisingApi
+﻿namespace VrisingApi;
+
+public class Configuration : IConfig
 {
-    public class Configuration : IConfig
-    {
-        public string VrisingLogPath => Environment.GetEnvironmentVariable("LOG_PATH") ?? string.Empty;
-    }
+    public string VrisingLogPath => Environment.GetEnvironmentVariable("LOG_PATH") ?? string.Empty;
 }
