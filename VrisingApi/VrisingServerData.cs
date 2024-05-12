@@ -1,1 +1,1 @@
-﻿internal record VrisingServerData(long SteamId);
+﻿internal record VrisingServerData(string SteamId);

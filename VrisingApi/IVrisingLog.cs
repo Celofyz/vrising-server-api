@@ -2,5 +2,5 @@
 
 internal interface IVrisingLog
 {
-    long ServerSteamId { get; }
+    string ServerSteamId { get; }
 }

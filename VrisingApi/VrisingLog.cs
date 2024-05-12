@@ -9,7 +9,7 @@ internal class VrisingLog : IVrisingLog
         this.config = config;
     }
 
-    public long ServerSteamId
+    public string ServerSteamId
     {
         get
         {
@@ -21,7 +21,7 @@ internal class VrisingLog : IVrisingLog
                 .Split(searchPattern);
 
             var steamId = splittedLine[idIndex].Trim();
-            return long.Parse(steamId);
+            return steamId;
         }
     }
 }
