@@ -2,5 +2,5 @@
 
 internal interface IVrisingLog
 {
-    string ServerSteamId { get; }
+    VrisingServerData GetServerData();
 }

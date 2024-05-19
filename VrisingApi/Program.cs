@@ -17,7 +17,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/vrisingserver", (IVrisingLog log) => new VrisingServerData(log.ServerSteamId))
+app.MapGet("/vrisingserver", (IVrisingLog serverLog) => serverLog.GetServerData())
     .WithName("GetVrisingServerData")
     .WithOpenApi();
 
