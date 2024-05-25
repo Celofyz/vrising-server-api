@@ -17,8 +17,9 @@ internal class VrisingLog : IVrisingLog
         var status = GetServerStatus(logFile);
         var startTime = GetStartTime(logFile);
         var version = GetVersion(logFile);
+        var userCount = GetUserCount(logFile);
 
-        return new VrisingServerData(steamId, status, startTime, version);
+        return new VrisingServerData(steamId, status, startTime, version, userCount);
     }
 
     private string GetServerSteamId(IEnumerable<string> logFile)
@@ -78,5 +79,25 @@ internal class VrisingLog : IVrisingLog
         var date = datePart[versionPartIndex].Trim();
 
         return date;
+    }
+
+    private string GetUserCount(IEnumerable<string> logFile)
+    {
+        const string userConnectionPattern = "User '";
+        const string connected = "connected as ID";
+        const string disconnected = "disconnected";
+
+        var connectionLogs = logFile
+            .Where(line => line.Contains(userConnectionPattern));
+
+        var connectCount = connectionLogs
+            .Where(line => line.Contains(connected))
+            .Count();
+
+        var disconnectCount = connectionLogs
+            .Where (line => line.Contains(disconnected))
+            .Count();
+
+        return (connectCount - disconnectCount).ToString();
     }
 }
